@@ -3,9 +3,10 @@ import { hero } from '../assets/assets'
 import { brainwave } from '../assets/assets'
 import { navigation } from '../constant'
 import { useLocation } from 'react-router-dom'
-import Menusvg from '../assets/assets/svg/MenuSvg'
+import MenuSvg from '../assets/assets/svg/MenuSvg'
 import {HamburgerMenu} from './design/Header'
 import Button from './Button'
+
 function Head() {
     const [openNavigation ,setOpenNavigation] = useState(true)
     const pathname= useLocation()
@@ -16,7 +17,7 @@ function Head() {
              <a className='w-[12rem] block' href="#hero">
              <img src={brainwave} alt="brainwave" width={190} height={40} />
              </a>
-             <nav className= {`${openNavigation ? 'flex flex-col' :'hidden'}  fixed  top-[5rem] left-0 right-0 lg:static lg:flex lg:mx-auto lg:bg-transparent bg-n-8`}>
+             <nav className= {`${openNavigation ? 'flex ' :'hidden'}  fixed  top-[5rem] left-0 right-0 lg:static lg:flex lg:mx-auto lg:bg-transparent bg-n-8`}>
                      <div className=' flex flex-col items-center justify-center m-auto lg:flex-row'>
                        {navigation.map((item)=>(
                         <a key={item.id} href={item.url} className={`block  relative font-code uppercase text-2xl text-n-1 hover:text-color-1 ${item.onlyMobile ? 'lg:hidden' :''}
@@ -31,13 +32,19 @@ function Head() {
              
               <div className={`flex items-center gap-4 `}>
               <a href="" className={`button transition-colors  text-n-4 hover:text-n-1 lg:block 
-                hidden`}>
+                hidden `}>
                      singup
                 </a>
             <Button className='hidden lg:flex ' href='#login'>
                 Sign in
             </Button>
+              
               </div>
+           
+             <Button className={`lg:hidden ml-auto`}>
+             <MenuSvg/>
+             </Button>
+
         </div>
      </div>
   )
