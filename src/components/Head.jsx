@@ -8,7 +8,7 @@ import {HamburgerMenu} from './design/Header'
 import Button from './Button'
 
 function Head() {
-    const [openNavigation ,setOpenNavigation] = useState(true)
+    const [openNavigation ,setOpenNavigation] = useState(false)
     const pathname= useLocation()
     const HanddleOnclick=()=>{
       if (openNavigation) {
