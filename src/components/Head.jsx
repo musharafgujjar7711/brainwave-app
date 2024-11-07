@@ -10,8 +10,17 @@ import Button from './Button'
 function Head() {
     const [openNavigation ,setOpenNavigation] = useState(true)
     const pathname= useLocation()
+    const HanddleOnclick=()=>{
+      if (openNavigation) {
+          setOpenNavigation(false)
+      }
+      else setOpenNavigation(true)
+    }
+    const handleClick=()=>{
+      setOpenNavigation(false)
+    }
   return (
-    <div className={`fixed top-0 left-0 w-full z-50 bg-n-8/90 backdrop-blur-sm border-b border-n-6 lg:backdrop-blur-sm
+    <div className={`fixed top-0 left-0 w-full z-50  border-b border-n-6 lg:backdrop-blur-sm
     lg:bg-n-8/90 ${openNavigation ? 'bg-n-8 ':'bg-n-8/80 backdrop-blur-sm '}`}>   
         <div className=' flex items-center px-5 lg:px-7.5 xl:px-10  max-lg:py-4'>
              <a className='w-[12rem] block' href="#hero">
@@ -20,7 +29,7 @@ function Head() {
              <nav className= {`${openNavigation ? 'flex ' :'hidden'}  fixed  top-[5rem] left-0 right-0 lg:static lg:flex lg:mx-auto lg:bg-transparent bg-n-8`}>
                      <div className=' flex flex-col items-center justify-center m-auto lg:flex-row'>
                        {navigation.map((item)=>(
-                        <a key={item.id} href={item.url} className={`block  relative font-code uppercase text-2xl text-n-1 hover:text-color-1 ${item.onlyMobile ? 'lg:hidden' :''}
+                        <a key={item.id} href={item.url} onClick={handleClick} className={`block  relative font-code uppercase text-2xl text-n-1 hover:text-color-1 ${item.onlyMobile ? 'lg:hidden' :''}
                         px-6 py-6 md:py-8 lg:text-xs lg:font-semibold  ${item.url ===pathname.hash ?'z-2 lg:text-n-1' : 'text-n-1/50'} lg:leading-5 xl:px-12 hover:text-n-1`}>
                             {item.title}
                             
@@ -41,8 +50,8 @@ function Head() {
               
               </div>
            
-             <Button className={`lg:hidden ml-auto`}>
-             <MenuSvg/>
+             <Button className={`lg:hidden ml-auto`} onClick={HanddleOnclick}>
+             <MenuSvg openNavigation={openNavigation}/>
              </Button>
 
         </div>
